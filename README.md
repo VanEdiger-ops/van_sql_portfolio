@@ -1,59 +1,92 @@
-# van_sql_portfolio
-Relational database project featuring a 50-table schema, 3NF normalization, optimized indexes, triggers, and transactional rollbacks.
+# sql_server_portfolio
+A collection of SQL projects demonstrating database design, normalization, constraints, triggers, query writing, indexing, and transaction management using Microsoft SQL Server.
 
-# Relational Database Engineering & Performance Optimization Portfolio
+## Skills Demonstrated
+- Relational Database Design
+- Third Normal Form (3NF)
+- Primary & Foreign Keys
+- Check & Default Constraints
+- Trigger Development
+- Joins and Aggregations
+- Query Optimization
+- Indexing
+- Transactions and Rollbacks
+- T-SQL
 
-A collection of enterprise-grade database solutions demonstrating expertise in relational database architecture, advanced SQL programmability, performance optimization, and role-based access control (RBAC).
+## Repository Contents
 
----
+### 1. `01_schema_and_constraints.sql`
+**Focus:** Database Design & Constraints
 
-## Core Technical Proficiencies
-*   **Database Engines:** Microsoft SQL Server (T-SQL), MySQL
-*   **Data Modeling:** 3NF Normalization, Schema Architecture, Relational Algebra, Entity-Relationship Diagrams (ERD)
-*   **Advanced Programmability:** Stored Procedures, ACID Transactions, Complex Database Triggers (BEFORE/AFTER/INSTEAD OF)
-*   **Performance Tuning:** Execution Plan Analysis, Composite Indexing, Query Optimization, Benchmarking
-*   **Data Security:** Role-Based Access Control (RBAC), Least Privilege Architecture, Secure Database Views
+Contains the database schema along with:
+- Primary Keys
+- Foreign Keys
+- Check Constraints
+- Default Constraints
+- Referential Integrity Rules
 
----
+### 2. `02_triggers.sql`
+**Focus:** Triggers
 
-## Featured Engineering Projects
+Contains triggers that automatically enforce database rules.
 
-### 1. Enterprise Railway Transit Management System
-**Focus:** *Database Architecture, 3NF Normalization, & High-Dimensional Schema Design*
+Examples include:
+- Date validation
+- Text length validation
+- Automatic rollback when invalid data is entered
 
-*   **Architecture & Design:** Engineered and validated a comprehensive 50-table relational database schema modeled to handle high-frequency transits, ticketing systems, passenger logistics, and asset maintenance tracking.
-*   **Normalization:** Normalized all tables to 3NF to strictly maintain data integrity, eliminate update anomalies, and enforce exact relational symmetry.
-*   **Relational Integrity:** Implemented complex relational hierarchies utilizing multi-table foreign keys, cascading deletions, and conditional triggers to manage pass validation and route schedules automatically.
+### 3. `03_queries_and_analysis.sql`
+**Focus:** Queries & Analysis
+
+Contains queries that use joins, grouping, and aggregation to answer questions about the data.
+
+Example:
 
 ```sql
--- Architectural Snippet: Relational View of Multi-Table Transit Metrics
-CREATE VIEW City_View_Travel_MaleFemale_2016_2017 AS
-SELECT TOP 50		
-    cs.name AS city_name, 
-    COUNT(DISTINCT t.travel_id) AS total_travels, 
-    COUNT(DISTINCT CASE WHEN c.gender = 'M' THEN t.travel_id END) AS male_travels, 
-    COUNT(DISTINCT CASE WHEN c.gender = 'F' THEN t.travel_id END) AS female_travels
-FROM cities_states cs
-JOIN customers c ON cs.city_state_id = c.city_state_id
-JOIN tickets t ON c.customer_id = t.customer_id
-JOIN travels tr ON t.travel_id = tr.travel_id
-WHERE YEAR(tr.date) IN (2016, 2017)
-GROUP BY cs.name
-ORDER BY total_travels DESC;
+SELECT
+    tr.travel_id,
+    COUNT(DISTINCT ti.ticket_id) AS ticket_demand,
+    COUNT(DISTINCT pt.pass_id) AS pass_demand,
+    COUNT(DISTINCT ti.ticket_id) + COUNT(DISTINCT pt.pass_id) AS total_demand
+FROM travels AS tr
+LEFT JOIN tickets AS ti
+    ON ti.travel_id = tr.travel_id
+LEFT JOIN passes_travels AS pt
+    ON pt.travel_id = tr.travel_id
+GROUP BY tr.travel_id
+ORDER BY total_demand DESC;
+```
 
--- Optimization Metric: Target Composite Index Architecture
-CREATE INDEX idx_vessel_transit_date 
-ON vessel_transits (vessel_id, transit_date);
+This query compares ticket and pass demand for each travel record.
 
--- Query Execution Time benchmark dropped from ~154ms to 0ms (CPU) post-indexing
-SELECT * FROM vessel_transits 
-WHERE vessel_id = 5000 AND transit_date > '2023-01-01';
+### 4. `04_optimized_indexes.sql`
+**Focus:** Indexing & Performance
 
--- Security Snippet: Secure Abstraction Layer via Isolated Views
-CREATE ROLE intern_role;
+Demonstrates:
+- Full Table Scans
+- Single-Column Indexes
+- Composite Indexes
+- Query Performance Testing
+Performance tests were run on large datasets to compare query speeds before and after indexing.
 
-CREATE VIEW intern_role_nosalary AS
-SELECT emp_id, name, department
-FROM Employees;
+### 5. `05_transactions.sql`
+**Focus:** Transactions
+Demonstrates safe database operations using:
+- `BEGIN TRANSACTION`
+- `COMMIT`
+- `ROLLBACK`
+- `TRY...CATCH`
+Examples include account transfers and rollback scenarios that help maintain data consistency when errors occur.
 
-GRANT SELECT ON intern_role_nosalary TO intern_role;
+## Technologies Used
+- Microsoft SQL Server
+- T-SQL
+- SQL Server Management Studio (SSMS)
+  
+## Key Learning Outcomes
+- Designed normalized relational databases
+- Enforced data integrity using constraints and triggers
+- Wrote analytical queries using joins and aggregations
+- Improved query performance with indexes
+- Implemented transactions and rollback recovery
+- Applied SQL Server best practices in database development
