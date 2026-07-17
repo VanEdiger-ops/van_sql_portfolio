@@ -1,7 +1,9 @@
 # sql_server_portfolio
-A collection of SQL projects demonstrating database design, normalization, constraints, triggers, query writing, indexing, and transaction management using Microsoft SQL Server.
+A collection of database projects demonstrating relational database design, SQL development, NoSQL concepts, data integrity, query optimization, and transaction management using Microsoft SQL Server and MongoDB.
 
 ## Skills Demonstrated
+
+### SQL Server
 - Relational Database Design
 - Third Normal Form (3NF)
 - Primary & Foreign Keys
@@ -13,7 +15,18 @@ A collection of SQL projects demonstrating database design, normalization, const
 - Transactions and Rollbacks
 - T-SQL
 
+### MongoDB (NoSQL)
+- Database Creation
+- Collection Creation
+- Document Insertion
+- Document Queries
+- Document Updates
+- Document Deletion
+- Basic NoSQL Database Concepts
+
 ## Repository Contents
+
+## SQL Server
 
 ### 1. `01_schema_and_constraints.sql`
 **Focus:** Database Design & Constraints
@@ -78,10 +91,25 @@ Demonstrates safe database operations using:
 - `TRY...CATCH`
 Examples include account transfers and rollback scenarios that help maintain data consistency when errors occur.
 
+## MongoDB
+
+### `01_mongodb_queries.js`
+**Focus:** Basic NoSQL Operations
+
+Demonstrates introductory MongoDB concepts, including:
+- Creating a database
+- Creating collections
+- Inserting documents
+- Querying documents
+- Updating documents
+- Deleting documents
+Examples demonstrate document-based storage and querying using MongoDB collections.
+
 ## Technologies Used
 - Microsoft SQL Server
 - T-SQL
 - SQL Server Management Studio (SSMS)
+- MongoDB
   
 ## Key Learning Outcomes
 - Designed normalized relational databases
@@ -90,3 +118,4 @@ Examples include account transfers and rollback scenarios that help maintain dat
 - Improved query performance with indexes
 - Implemented transactions and rollback recovery
 - Applied SQL Server best practices in database development
+- Applied basic NoSQL concepts using MongoDB
