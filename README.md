@@ -213,21 +213,6 @@ database_engineering_portfolio/
 
 ---
 
-# Running the Projects
-
-## SQL Server
-
-1. Open SQL Server Management Studio (SSMS)
-2. Execute the SQL files in numerical order:
-
-```
-01_schema_and_constraints.sql
-02_triggers.sql
-03_queries_and_analysis.sql
-04_indexing_and_performance.sql
-05_transactions.sql
-```
-
 ## MongoDB
 
 1. Start MongoDB
