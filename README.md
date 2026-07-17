@@ -93,7 +93,7 @@ Examples include account transfers and rollback scenarios that help maintain dat
 
 ## MongoDB
 
-### `01_mongodb_queries.js`
+### 1. `06_mongodb_queries.js`
 **Focus:** Basic NoSQL Operations
 
 Demonstrates introductory MongoDB concepts, including:
