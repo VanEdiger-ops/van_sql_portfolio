@@ -1,57 +1,98 @@
-# database_engineering_portfolio
+# Database Engineering Portfolio
+
 A collection of database projects demonstrating relational database design, SQL development, NoSQL concepts, data integrity, query optimization, and transaction management using Microsoft SQL Server and MongoDB.
 
-## Skills Demonstrated
+## Project Overview
 
-### SQL Server
-- Relational Database Design
-- Third Normal Form (3NF)
-- Primary & Foreign Keys
-- Check & Default Constraints
-- Trigger Development
-- Joins and Aggregations
-- Query Optimization
-- Indexing
-- Transactions and Rollbacks
-- T-SQL
+This repository demonstrates database engineering concepts through the development of a transportation management database system using Microsoft SQL Server and MongoDB.
 
-### MongoDB (NoSQL)
-- Database Creation
-- Collection Creation
-- Document Insertion
-- Document Queries
-- Document Updates
-- Document Deletion
-- Basic NoSQL Database Concepts
+The SQL Server implementation focuses on relational database design, normalization, data integrity, performance optimization, and transaction management. The MongoDB implementation demonstrates NoSQL document modeling, CRUD operations, and flexible schema design.
 
-## Repository Contents
+The projects were developed to demonstrate practical database development workflows including schema creation, validation, querying, optimization, and maintaining reliable data operations.
+
+---
+
+# Skills Demonstrated
 
 ## SQL Server
 
-### 1. `01_schema_and_constraints.sql`
+- Relational Database Design
+- Entity Relationship Modeling
+- Third Normal Form (3NF)
+- Primary & Foreign Keys
+- Check & Default Constraints
+- Referential Integrity
+- Trigger Development
+- Views
+- Joins and Aggregations
+- T-SQL
+- Query Optimization
+- Clustered and Non-Clustered Indexing
+- Composite Indexes
+- Transactions and Rollbacks
+- ACID Properties
+
+## MongoDB (NoSQL)
+
+- Database Creation
+- Collection Creation
+- Document-Based Data Modeling
+- CRUD Operations
+- Document Insertion
+- Document Queries
+- Nested Document Queries
+- Embedded Documents
+- Arrays of Documents
+- Document Updates
+- MongoDB Query Operators
+- Document Deletion
+- Flexible Schema Design
+
+---
+
+# Repository Contents
+
+## SQL Server
+
+## 1. `01_schema_and_constraints.sql`
+
 **Focus:** Database Design & Constraints
 
 Contains the database schema along with:
+
 - Primary Keys
 - Foreign Keys
 - Check Constraints
 - Default Constraints
 - Referential Integrity Rules
+- Entity Relationships
 
-### 2. `02_triggers.sql`
+The relational database was designed using normalization principles to achieve Third Normal Form (3NF), reducing redundancy and improving data integrity.
+
+---
+
+## 2. `02_triggers.sql`
+
 **Focus:** Triggers
 
 Contains triggers that automatically enforce database rules.
 
 Examples include:
+
 - Date validation
 - Text length validation
+- Data validation rules
 - Automatic rollback when invalid data is entered
 
-### 3. `03_queries_and_analysis.sql`
+Triggers were used to enforce business rules and maintain database consistency.
+
+---
+
+## 3. `03_queries_and_analysis.sql`
+
 **Focus:** Queries & Analysis
 
-Contains queries that use joins, grouping, and aggregation to answer questions about the data.
+Contains SQL queries using joins, grouping, and aggregation to analyze data and answer business questions.
 
 Example:
 
@@ -70,52 +111,153 @@ GROUP BY tr.travel_id
 ORDER BY total_demand DESC;
 ```
 
-This query compares ticket and pass demand for each travel record.
+This query compares ticket and pass demand for each travel record using relational joins and aggregation.
 
-### 4. `04_optimized_indexes.sql`
-**Focus:** Indexing & Performance
+---
+
+## 4. `04_indexing_and_performance.sql`
+
+**Focus:** Indexing & Performance Optimization
 
 Demonstrates:
+
 - Full Table Scans
+- Clustered Indexes
+- Non-Clustered Indexes
 - Single-Column Indexes
 - Composite Indexes
 - Query Performance Testing
-Performance tests were run on large datasets to compare query speeds before and after indexing.
 
-### 5. `05_transactions.sql`
+Performance testing was performed using simulated datasets to compare query execution times before and after implementing indexes.
+
+---
+
+## 5. `05_transactions.sql`
+
 **Focus:** Transactions
+
 Demonstrates safe database operations using:
+
 - `BEGIN TRANSACTION`
 - `COMMIT`
 - `ROLLBACK`
 - `TRY...CATCH`
-Examples include account transfers and rollback scenarios that help maintain data consistency when errors occur.
+
+Examples include multi-step operations, account transfers, and rollback scenarios designed to maintain data consistency when errors occur.
+
+---
+
+# MongoDB
+
+## 6. `06_mongodb_queries.js`
+
+**Focus:** NoSQL Document Operations
+
+Demonstrates introductory MongoDB concepts, including:
+
+- Creating databases
+- Creating collections
+- Document insertion
+- Document querying
+- Updating documents
+- Updating arrays
+- Deleting documents
+- Embedded documents
+- Arrays of documents
+- Document-based storage
+
+Examples demonstrate flexible schema design and querying using MongoDB collections.
+
+---
+
+# Database Concepts Applied
+
+## Relational Database Concepts
+
+- Entity Relationship Modeling
+- Normalization
+- Third Normal Form (3NF)
+- Primary and Foreign Keys
+- Constraints
+- Referential Integrity
+- SQL Query Development
+- Data Validation
+- Index Optimization
+- Transaction Management
+- ACID Properties
+
+## NoSQL Concepts
+
+- Document Storage
+- Schema Flexibility
+- Embedded Data
+- Array Fields
+- Nested Queries
+- CRUD Operations
+
+---
+
+# Repository Structure
+
+```
+database_engineering_portfolio/
+
+├── 01_schema_and_constraints.sql
+├── 02_triggers.sql
+├── 03_queries_and_analysis.sql
+├── 04_indexing_and_performance.sql
+├── 05_transactions.sql
+├── 06_mongodb_queries.js
+└── README.md
+```
+
+---
+
+# Running the Projects
+
+## SQL Server
+
+1. Open SQL Server Management Studio (SSMS)
+2. Execute the SQL files in numerical order:
+
+```
+01_schema_and_constraints.sql
+02_triggers.sql
+03_queries_and_analysis.sql
+04_indexing_and_performance.sql
+05_transactions.sql
+```
 
 ## MongoDB
 
-### 1. `06_mongodb_queries.js`
-**Focus:** Basic NoSQL Operations
+1. Start MongoDB
+2. Open MongoDB Shell (`mongosh`)
+3. Execute:
 
-Demonstrates introductory MongoDB concepts, including:
-- Creating a database
-- Creating collections
-- Inserting documents
-- Querying documents
-- Updating documents
-- Deleting documents
-Examples demonstrate document-based storage and querying using MongoDB collections.
+```
+06_mongodb_queries.js
+```
 
-## Technologies Used
+---
+
+# Technologies Used
+
 - Microsoft SQL Server
 - T-SQL
 - SQL Server Management Studio (SSMS)
 - MongoDB
-  
-## Key Learning Outcomes
+- MongoDB Shell (`mongosh`)
+- JSON Document Format
+
+---
+
+# Key Learning Outcomes
+
 - Designed normalized relational databases
+- Modeled database relationships and dependencies
 - Enforced data integrity using constraints and triggers
-- Wrote analytical queries using joins and aggregations
-- Improved query performance with indexes
+- Developed analytical queries using joins and aggregations
+- Improved query performance through indexing
 - Implemented transactions and rollback recovery
-- Applied SQL Server best practices in database development
-- Applied basic NoSQL concepts using MongoDB
+- Applied SQL Server database development practices
+- Designed and queried NoSQL document-based databases using MongoDB
