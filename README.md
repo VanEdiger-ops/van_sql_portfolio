@@ -1,4 +1,4 @@
-# sql_server_portfolio
+# database_engineering_portfolio
 A collection of database projects demonstrating relational database design, SQL development, NoSQL concepts, data integrity, query optimization, and transaction management using Microsoft SQL Server and MongoDB.
 
 ## Skills Demonstrated
