@@ -213,13 +213,6 @@ database_engineering_portfolio/
 
 ---
 
-## MongoDB
-
-1. Start MongoDB
-2. Open MongoDB Shell (`mongosh`)
-3. Execute:
-
-```
 06_mongodb_queries.js
 ```
 
