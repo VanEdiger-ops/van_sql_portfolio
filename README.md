@@ -2,11 +2,15 @@
 
 A collection of database projects demonstrating relational database design, SQL development, NoSQL concepts, data integrity, query optimization, and transaction management using Microsoft SQL Server and MongoDB.
 
-## Project Overview
+---
+
+# Project Overview
 
 This repository demonstrates database engineering concepts through the development of a transportation management database system using Microsoft SQL Server and MongoDB.
 
 The SQL Server implementation focuses on relational database design, normalization, data integrity, performance optimization, and transaction management. The MongoDB implementation demonstrates NoSQL document modeling, CRUD operations, and flexible schema design.
+
+The SQL Server project models a transportation system involving entities such as customers, tickets, routes, travels, passes, and related operational data.
 
 The projects were developed to demonstrate practical database development workflows including schema creation, validation, querying, optimization, and maintaining reliable data operations.
 
@@ -52,7 +56,7 @@ The projects were developed to demonstrate practical database development workfl
 
 # Repository Contents
 
-## SQL Server
+# SQL Server
 
 ## 1. `01_schema_and_constraints.sql`
 
@@ -199,7 +203,7 @@ Examples demonstrate flexible schema design and querying using MongoDB collectio
 
 # Repository Structure
 
-```
+```text
 database_engineering_portfolio/
 
 ├── 01_schema_and_constraints.sql
@@ -213,19 +217,19 @@ database_engineering_portfolio/
 
 ---
 
-06_mongodb_queries.js
-```
+# Development Environment
 
----
-
-# Technologies Used
+The projects were developed using:
 
 - Microsoft SQL Server
-- T-SQL
 - SQL Server Management Studio (SSMS)
 - MongoDB
 - MongoDB Shell (`mongosh`)
-- JSON Document Format
+- JSON / BSON Document Format
+
+The SQL Server scripts demonstrate relational database design, querying, optimization, indexing, and transaction management.
+
+The MongoDB script demonstrates document-based storage, CRUD operations, embedded documents, and flexible NoSQL schema design.
 
 ---
 
@@ -239,3 +243,5 @@ database_engineering_portfolio/
 - Implemented transactions and rollback recovery
 - Applied SQL Server database development practices
 - Designed and queried NoSQL document-based databases using MongoDB
+
+---
