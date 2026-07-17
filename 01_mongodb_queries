@@ -1,125 +1,137 @@
-mongosh mongodb://127.0.0.X
-+
-Microsoft Windows [Version 10.0.26100.8246]
-(c) Microsoft Corporation. All rights reserved.
+// ===============================
+// Assignment 1: Streaming Database
+// Demonstrates basic CRUD operations
+// ===============================
 
-C:\Users\ediger>mongosh
-Current Mongosh Log ID: 69eb8b48e1634ff18f3682d0
-Connecting to:
-://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.8.2
-Using MongoDB:   8.2.7
-Using Mongosh:   2.8.2
+use("streamingDB")
 
-For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+db.createCollection("movies")
 
-The server generated these startup warnings when booting
-2026-04-24T10:32:27.783-04:00: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
-
-test> show dbs
-admin         40.00 KiB
-config       104.00 KiB
-local         40.00 KiB
-streamingDB   68.00 KiB
-
-test> use nasaDB
-switched to db nasaDB
-
-nasaDB> db.createCollection("missions")
-{ ok: 1 }
-
-mongosh mongodb://127.0.0.X
-
-nasaDB> db.missions.insertMany([
-  {
-    "mission_name": "Artemis I",
-    "launch_year": 2022,
-    "status": "Completed",
-    "crew": [],
-    "details": {
-      "destination": "Moon",
-      "duration_days": 25
+// Insert movie documents
+db.movies.insertMany([
+    {
+        title: "Inception",
+        director: "Christopher Nolan",
+        year: 2010,
+        genres: ["Sci-Fi", "Thriller"]
+    },
+    {
+        title: "The Dark Knight",
+        director: "Christopher Nolan",
+        year: 2008,
+        genres: ["Action", "Crime"]
     }
-  },
-  {
-    "mission_name": "Artemis II",
-    "launch_year": 2025,
-    "status": "Planned",
-    "crew": [
-      { "name": "Alice Johnson", "role": "Commander" },
-      { "name": "Bob Smith", "role": "Pilot" }
-    ],
-    "details": {
-      "destination": "Moon",
-      "duration_days": 10
-    }
-  }
 ])
-{
-  acknowledged: true,
-  insertedIds: {
-    '0': ObjectId('69eb9e4de1634ff18f3682d1'),
-    '1': ObjectId('69eb9e4de1634ff18f3682d2')
-  }
-}
 
-nasaDB> db.missions.find({destination: "Moon"})
-nasaDB> db.missions.find({"details.destination": "Moon"})
-[
-  {
-    _id: ObjectId('69eb9e4de1634ff18f3682d1'),
-    mission_name: 'Artemis I',
-    launch_year: 2022,
-    status: 'Completed',
-    crew: [],
-    details: { destination: 'Moon', duration_days: 25 }
-  },
-  {
-    _id: ObjectId('69eb9e4de1634ff18f3682d2'),
-    mission_name: 'Artemis II',
-    launch_year: 2025,
-    status: 'Planned',
-    crew: [
-      { name: 'Alice Johnson', role: 'Commander' },
-      { name: 'Bob Smith', role: 'Pilot' }
-    ],
-    details: { destination: 'Moon', duration_days: 10 }
-  }
-]
+// Query documents using a filter
+db.movies.find({
+    director: "Christopher Nolan"
+})
 
-nasaDB> db.missions.find({"crew.0": {$exists: true}})
-[
-  {
-    _id: ObjectId('69eb9e4de1634ff18f3682d2'),
-    mission_name: 'Artemis II',
-    launch_year: 2025,
-    status: 'Planned',
-    crew: [
-      { name: 'Alice Johnson', role: 'Commander' },
-      { name: 'Bob Smith', role: 'Pilot' }
-    ],
-    details: { destination: 'Moon', duration_days: 10 }
-  }
-]
+// Update a document field
+db.movies.updateOne(
+    {
+        title: "Inception"
+    },
+    {
+        $set: {
+            year: 2012
+        }
+    }
+)
 
-nasaDB> db.missions.updateOne({"mission_name": "Artemis II"}, {$set: {"status": "In Progress"}})
-{
-  acknowledged: true,
-  insertedId: null,
-  matchedCount: 1,
-  modifiedCount: 1,
-  upsertedCount: 0
-}
+// Delete documents using a condition
+db.movies.deleteOne({
+    year: {
+        $lt: 2010
+    }
+})
 
-nasaDB> db.missions.updateOne({"mission_name": "Artemis I"}, {$push: {"crew": {"name": "Charlie Davis", "role": "Mission Specialist"}}})
-{
-  acknowledged: true,
-  insertedId: null,
-  matchedCount: 1,
-  modifiedCount: 1,
-  upsertedCount: 0
-}
 
-nasaDB> db.missions.deleteMany({"launch_year": {$lt: 2023}})
-{ acknowledged: true, deletedCount: 1 }
+// ===============================
+// Assignment 2: NASA Mission Database
+// Demonstrates embedded documents and arrays
+// ===============================
 
-nasaDB>
+use("nasaDB")
+
+db.createCollection("missions")
+
+// Insert documents with nested objects and arrays
+db.missions.insertMany([
+    {
+        mission_name: "Artemis I",
+        launch_year: 2022,
+        status: "Completed",
+        crew: [],
+        details: {
+            destination: "Moon",
+            duration_days: 25
+        }
+    },
+    {
+        mission_name: "Artemis II",
+        launch_year: 2025,
+        status: "Planned",
+        crew: [
+            {
+                name: "Alice Johnson",
+                role: "Commander"
+            },
+            {
+                name: "Bob Smith",
+                role: "Pilot"
+            }
+        ],
+        details: {
+            destination: "Moon",
+            duration_days: 10
+        }
+    }
+])
+
+// Query nested document fields
+db.missions.find({
+    "details.destination": "Moon"
+})
+
+// Query documents containing array elements
+db.missions.find({
+    "crew.0": {
+        $exists: true
+    }
+})
+
+// Update a document field
+db.missions.updateOne(
+    {
+        mission_name: "Artemis II"
+    },
+    {
+        $set: {
+            status: "In Progress"
+        }
+    }
+)
+
+// Add an object to an array field
+db.missions.updateOne(
+    {
+        mission_name: "Artemis I"
+    },
+    {
+        $push: {
+            crew: {
+                name: "Charlie Davis",
+                role: "Mission Specialist"
+            }
+        }
+    }
+)
+
+// Delete multiple documents
+db.missions.deleteMany({
+    launch_year: {
+        $lt: 2023
+    }
+})
